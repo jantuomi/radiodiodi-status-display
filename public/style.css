@@ -39,12 +39,21 @@ h1 {
     justify-content: center;
 }
 
+
 .system-title {
     font-size: 7vw;
 }
 
-.system-info-elem {
-    font-size: 5vw;
+@media all and (min-width: 1200px) {
+    .system-info-elem {
+        font-size: 60px;
+    }
+}
+
+@media all and (max-width: 1200px) {
+    .system-info-elem {
+        font-size: 5vw;
+    }
 }
 
 .good-system {
