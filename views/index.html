@@ -3,17 +3,21 @@
 
 <head>
     <meta charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400italic' rel='stylesheet' type='text/css'>
     <title>Radiodiodi system status</title>
     <script src="angular.min.js"></script>
     <script src="client.js"></script>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body ng-controller="status-controller">
 
-<ul>
-    <li ng-repeat="system in systems">
-        {{ system }}
-    </li>
-</ul>
+    <div ng-repeat="system in systems" ng-class="system.status ? 'good-system' : 'bad-system'">
+        <h1>
+            {{ system.name }}
+        </h1>
+        <h3>{{ system.status ? "UP" : "DOWN" }}</h3>
+        <h3>Uptime: {{ system.uptime }}%</h3>
+    </div>
 
 </body>
 </html>

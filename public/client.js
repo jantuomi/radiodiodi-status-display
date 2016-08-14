@@ -3,7 +3,7 @@ var statusapp = angular.module('status-app', []);
 statusapp.controller('status-controller', ['$scope', '$http', function status_controller($scope, $http) {
     $scope.systems = [];
 
-    setInterval(function() {
+    var update = function() {
         $http({
             method: "GET",
             url: "/status"
@@ -12,5 +12,8 @@ statusapp.controller('status-controller', ['$scope', '$http', function status_co
         }, function errorCallback(response) {
 
         });
-    }, 5000);
+    };
+    
+    setInterval(update, 5000);
+    update();
 }]);
