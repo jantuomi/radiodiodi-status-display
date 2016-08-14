@@ -1,0 +1,22 @@
+{
+  "name": "radiodiodi-status-display",
+  "version": "1.0.0",
+  "description": "statuscake display",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jantuomi/radiodiodi-status-display.git"
+  },
+  "author": "Jan Tuomi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jantuomi/radiodiodi-status-display/issues"
+  },
+  "homepage": "https://github.com/jantuomi/radiodiodi-status-display#readme",
+  "dependencies": {
+    "statuscake": ""
+  }
+}
