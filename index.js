@@ -20,16 +20,36 @@ statuscake
   .username(username)
   .key(password);
  
+var currentStatus = {};
+
 app.get("/", function(req, res) {
     res.render("index.html");
+});
+
+app.get("/status", function(req, res) {
+    res.json(currentStatus);
 });
 
 app.listen(3000, function() {
     console.log("radiodiodi status display listening on port 3000.");
 });
 
-function allTests(err, data) {
-    console.log(data);
+
+function get_status(err, data) {
+    currentStatus = [];
+    for (var i = 0; i < data.length; i++) {
+        var is_up = data[i].Status == 'Up';
+
+        var system = {}
+        system.name = data[i].WebsiteName;
+        system.status = is_up;
+        system.uptime = data[i].Uptime;
+        currentStatus.push(system);
+    }
+
+    console.log(currentStatus);
 }
 
-statuscake.tests(allTests);
+setInterval(function() {
+    statuscake.tests(get_status);
+}, 5000);

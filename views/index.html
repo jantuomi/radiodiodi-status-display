@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-.line {
-  fill: none;
-  stroke: #000;
-  stroke-width: 1.5px;
-}
-</style>
-<svg width="960" height="500"></svg>
-<script src="//d3js.org/d3.v4.min.js"></script>
-<script src="graph.js"></script>
+<html ng-app="status-app">
+
+<head>
+    <meta charset="utf-8">
+    <title>Radiodiodi system status</title>
+    <script src="angular.min.js"></script>
+    <script src="client.js"></script>
+</head>
+<body ng-controller="status-controller">
+
+<ul>
+    <li ng-repeat="system in systems">
+        {{ system }}
+    </li>
+</ul>
+
+</body>
+</html>
