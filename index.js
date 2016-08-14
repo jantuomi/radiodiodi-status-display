@@ -3,7 +3,7 @@ var express = require("express");
 var ejs = require("ejs");
 var winston = require("winston");
 winston.remove(winston.transports.Console);
-winston.add(winston.transports.Console, {'timestamp': true});
+winston.add(winston.transports.Console, {'handleExceptions': true, 'exitOnError': false, 'timestamp': true});
 winston.add(winston.transports.File, { filename: './logs/server.log', level: 'info', timestamp: true, handleExceptions: true, maxsize: 5242880, maxFiles: 10});
 winston.level = 'info';
 

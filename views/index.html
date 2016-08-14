@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400italic' rel='stylesheet' type='text/css'>
     <title>Radiodiodi system status</title>
     <script src="angular.min.js"></script>
@@ -11,12 +12,16 @@
 </head>
 <body ng-controller="status-controller">
 
-    <div ng-repeat="system in systems" ng-class="system.status ? 'good-system' : 'bad-system'">
-        <h1>
-            {{ system.name }}
-        </h1>
-        <h3>{{ system.status ? "UP" : "DOWN" }}</h3>
-        <h3>Uptime: {{ system.uptime }}%</h3>
+    <div ng-repeat="system in systems" class="system" ng-class="system.status ? 'good-system' : 'bad-system'">
+        <div class="system-title-container">
+            <h1 class="system-title">
+                {{ system.name }}
+            </h1>
+        </div>
+        <div class="system-info-container">
+            <h3 class="system-info-elem">{{ system.status ? "UP" : "DOWN" }}</h3>
+            <h3 class="system-info-elem">Uptime: {{ system.uptime }}%</h3>
+        </div>
     </div>
 
 </body>
