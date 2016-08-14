@@ -13,6 +13,9 @@ if (args.length != 2) {
     process.exit(1);
 }
 
+var UPDATE_INTERVAL = 60000;
+var PORT = 3000;
+
 var username = args[0];
 var password = args[1];
 
@@ -30,19 +33,17 @@ app.get("/status", function(req, res) {
     res.json(currentStatus);
 });
 
-app.listen(3000, function() {
-    console.log("radiodiodi status display listening on port 3000.");
+app.listen(PORT, function() {
+    console.log("radiodiodi status display listening on port " + PORT + ".");
 });
-
 
 function get_status(err, data) {
     currentStatus = [];
     for (var i = 0; i < data.length; i++) {
-        var is_up = data[i].Status == 'Up';
 
         var system = {}
         system.name = data[i].WebsiteName;
-        system.status = is_up;
+        system.status = data[i].Status == 'Up';
         system.uptime = data[i].Uptime;
         currentStatus.push(system);
     }
@@ -50,6 +51,7 @@ function get_status(err, data) {
     console.log(currentStatus);
 }
 
+statuscake.tests(get_status);
 setInterval(function() {
     statuscake.tests(get_status);
-}, 5000);
+}, UPDATE_INTERVAL);

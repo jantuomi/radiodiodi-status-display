@@ -1,5 +1,7 @@
 var statusapp = angular.module('status-app', []);
 
+var UPDATE_INTERVAL = 60000;
+
 statusapp.controller('status-controller', ['$scope', '$http', function status_controller($scope, $http) {
     $scope.systems = [];
 
@@ -14,6 +16,6 @@ statusapp.controller('status-controller', ['$scope', '$http', function status_co
         });
     };
     
-    setInterval(update, 5000);
+    setInterval(update, UPDATE_INTERVAL);
     update();
 }]);
