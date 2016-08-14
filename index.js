@@ -1,6 +1,11 @@
 var statuscake = require("statuscake");
 var express = require("express");
 var ejs = require("ejs");
+var winston = require("winston");
+winston.remove(winston.transports.Console);
+winston.add(winston.transports.Console, {'timestamp': true});
+winston.add(winston.transports.File, { filename: './logs/server.log', level: 'info', timestamp: true, handleExceptions: true, maxsize: 5242880, maxFiles: 10});
+winston.level = 'info';
 
 var app = express();
 app.set("views", __dirname + "/views");
@@ -9,7 +14,7 @@ app.use(express.static("public"));
 
 var args = process.argv.slice(2);
 if (args.length != 2) {
-    console.log("Please provide user and key as positional arguments.");
+    winston.error("Please provide user and key as positional arguments.");
     process.exit(1);
 }
 
@@ -34,7 +39,7 @@ app.get("/status", function(req, res) {
 });
 
 app.listen(PORT, function() {
-    console.log("radiodiodi status display listening on port " + PORT + ".");
+    winston.info("radiodiodi status display listening on port " + PORT + ".");
 });
 
 function get_status(err, data) {
@@ -48,7 +53,7 @@ function get_status(err, data) {
         currentStatus.push(system);
     }
 
-    console.log(currentStatus);
+    winston.info(currentStatus);
 }
 
 statuscake.tests(get_status);
